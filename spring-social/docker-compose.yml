@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql:8.3.0
+    platform: linux/amd64
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: spring_social
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysql!
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
