@@ -3,6 +3,7 @@ import {request} from "../../util/APIUtils";
 import {ACCESS_TOKEN, API_BASE_URL} from "../../constants";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -39,10 +40,12 @@ const LoginForm = () => {
         login(loginRequest)
             .then(response => {
                 localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                // Alert.success("You're successfully logged in!");
+                toast("You're successfully logged in!");
                 navigate("/");
             }).catch(error => {
-            // Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
+            toast((error && error.message) || 'Oops! Something went wrong. Please try again!', {
+                className: "error"
+            });
         });
     }
 

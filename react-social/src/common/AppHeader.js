@@ -9,10 +9,10 @@ const AppHeader = ({onLogout}) => {
     return (
         <header className="app-header">
             <div className="container">
-                <div className="app-branding">
+                <span className="app-branding">
                     <Link to="/">Spring Social</Link>
-                </div>
-                <div className="app-options">
+                </span>
+                <span className="app-options">
                     <nav className="app-nav">
                         {isAuthenticated ? (
                             <ul>
@@ -34,7 +34,7 @@ const AppHeader = ({onLogout}) => {
                             </ul>
                         )}
                     </nav>
-                </div>
+                </span>
             </div>
         </header>
     )

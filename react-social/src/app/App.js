@@ -12,6 +12,8 @@ import Login from "../user/login/Login";
 import Signup from "../user/signup/Signup";
 import PrivateRoute from "../auth/PrivateRoute";
 import {useAuth} from "../auth/AuthProvider";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     const [loading, setLoading] = useState(true);
@@ -19,7 +21,7 @@ const App = () => {
 
     const handleLogout = () => {
         localStorage.removeItem(ACCESS_TOKEN);
-        // Alert.success("You're safely logged out!");
+        toast("You're safely logged out!");
     }
 
     useEffect(() => {
@@ -43,13 +45,22 @@ const App = () => {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/signup" element={<Signup/>}/>
                         <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler/>}/>
-                        <Route element={<NotFound/>}/>
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
-            {/*<Alert stack={{limit: 3}}*/}
-            {/*       timeout={3000}*/}
-            {/*       position='top-right' effect='slide' offset={65}/>*/}
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 }

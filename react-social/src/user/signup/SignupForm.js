@@ -3,6 +3,7 @@ import {request} from "../../util/APIUtils";
 import {useState} from "react";
 import {API_BASE_URL} from "../../constants";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const SignupForm = () => {
     const navigate = useNavigate();
@@ -34,11 +35,10 @@ const SignupForm = () => {
         const signUpRequest = Object.assign({}, formState);
         signup(signUpRequest)
             .then(response => {
-                // TODO: causes errors. Replace
-                // Alert.success("You're successfully registered. Please login to continue!");
+                toast("You're successfully registered. Please login to continue!");
                 navigate("/login");
             }).catch(error => {
-            // Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
+            toast((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });
     };
 
