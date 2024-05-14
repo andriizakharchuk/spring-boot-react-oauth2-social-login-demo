@@ -2,9 +2,15 @@ import React from "react";
 import {Link, NavLink} from 'react-router-dom';
 import './AppHeader.css';
 import {useAuth} from "../auth/AuthProvider";
+import {toast} from "react-toastify";
 
-const AppHeader = ({onLogout}) => {
-    let {isAuthenticated} = useAuth();
+const AppHeader = () => {
+    const {isAuthenticated, logout} = useAuth();
+
+    const logoutUser = () => {
+        logout();
+        toast("You're safely logged out!");
+    }
 
     return (
         <header className="app-header">
@@ -20,7 +26,7 @@ const AppHeader = ({onLogout}) => {
                                     <NavLink to="/profile">Profile</NavLink>
                                 </li>
                                 <li>
-                                    <a onClick={onLogout}>Logout</a>
+                                    <a onClick={logoutUser}>Logout</a>
                                 </li>
                             </ul>
                         ) : (

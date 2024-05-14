@@ -7,9 +7,9 @@ import {useAuth} from "../../auth/AuthProvider";
 import {toast} from "react-toastify";
 
 const Login = () => {
-    let {isAuthenticated} = useAuth();
-    let location = useLocation();
-    let navigate = useNavigate();
+    const {isAuthenticated} = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const redirectIfError = () => {
         // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.

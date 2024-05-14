@@ -7,9 +7,7 @@ import {AuthProvider} from "./auth/AuthProvider";
 const root = createRoot(document.getElementById("root"));
 
 root.render(
-    <StrictMode>
-        <AuthProvider>
-            <App/>
-        </AuthProvider>
-    </StrictMode>
+    <AuthProvider>
+        <App/>
+    </AuthProvider>
 );

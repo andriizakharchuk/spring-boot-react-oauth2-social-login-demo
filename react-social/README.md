@@ -1868,14 +1868,14 @@ offline-first service worker in a development environment, as it can lead to
 frustration when previously cached assets are used and do not include the latest
 changes you've made locally.
 
-1. If you *need* to test your offline-first service worker locally, build
+2. If you *need* to test your offline-first service worker locally, build
 the application (using `npm run build`) and run a simple http server from your
 build directory. After running the build script, `create-react-app` will give
 instructions for one way to test your production build locally and the [deployment instructions](#deployment) have
 instructions for using other methods. *Be sure to always use an
 incognito window to avoid complications with your browser cache.*
 
-1. If possible, configure your production environment to serve the generated
+3. If possible, configure your production environment to serve the generated
 `service-worker.js` [with HTTP caching disabled](http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours).
 If that's not possible—[GitHub Pages](#github-pages), for instance, does not
 allow you to change the default 10 minute HTTP cache lifetime—then be aware
@@ -1886,7 +1886,7 @@ need to view your updated production deployment, performing a shift-refresh
 will temporarily disable the service worker and retrieve all assets from the
 network.
 
-1. Users aren't always familiar with offline-first web apps. It can be useful to
+4. Users aren't always familiar with offline-first web apps. It can be useful to
 [let the user know](https://developers.google.com/web/fundamentals/instant-and-offline/offline-ux#inform_the_user_when_the_app_is_ready_for_offline_consumption)
 when the service worker has finished populating your caches (showing a "This web
 app works offline!" message) and also let them know when the service worker has
@@ -1897,7 +1897,7 @@ demonstrates which service worker lifecycle events to listen for to detect each
 scenario, and which as a default, just logs appropriate messages to the
 JavaScript console.
 
-1. By default, the generated service worker file will not intercept or cache any
+5. By default, the generated service worker file will not intercept or cache any
 cross-origin traffic, like HTTP [API requests](#integrating-with-an-api-backend),
 images, or embeds loaded from a different domain. If you would like to use a
 runtime caching strategy for those requests, you can [`eject`](#npm-run-eject)
@@ -2466,7 +2466,7 @@ To resolve this:
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
   * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
-2. Fork the package and publish a corrected version yourself. 
+2. Fork the package and publish a corrected version yourself.
 
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
@@ -2481,5 +2481,4 @@ In the future, we might start automatically compiling incompatible third-party m
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
 
 TODO:
- - update header on login / logout
  - hide animation if not logged in

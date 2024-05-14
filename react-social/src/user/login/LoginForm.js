@@ -1,19 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import {request} from "../../util/APIUtils";
 import {ACCESS_TOKEN, API_BASE_URL} from "../../constants";
-import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import {useAuth} from "../../auth/AuthProvider";
 
 const LoginForm = () => {
     const navigate = useNavigate();
+    let {login} = useAuth();
 
     const [state, setState] = useState({
         email: '',
         password: ''
     });
 
-    const login = (loginRequest) => {
+    const loginRequest = (loginRequest) => {
         return request({
             url: API_BASE_URL + "/auth/login",
             method: 'POST',
@@ -35,11 +36,12 @@ const LoginForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const loginRequest = Object.assign({}, state);
+        const loginRequestObject = Object.assign({}, state);
 
-        login(loginRequest)
-            .then(response => {
-                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        loginRequest(loginRequestObject)
+            .then(userData => {
+                login(userData);
+                localStorage.setItem(ACCESS_TOKEN, userData.accessToken);
                 toast("You're successfully logged in!");
                 navigate("/");
             }).catch(error => {
